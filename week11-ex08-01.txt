@@ -1,0 +1,9 @@
+CREATE TABLE 수강과목 (
+  sno    char(5) ,
+  eno    char(5) ,
+  ename  varchar(20),
+  egrade int ,
+  PRIMARY KEY(sno, eno) ,
+  FOREIGN KEY(sno) REFERENCES 학생(sno)
+);
+

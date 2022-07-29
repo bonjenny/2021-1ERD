@@ -1,0 +1,325 @@
+/*========================================*/
+
+--교재 p46 dept, emp 테이블 생성하고 
+
+-- 다음 데이터 입력 실행하시오
+
+/*========================================*/
+
+--dept(deptid, dname, budget)
+
+--emp(empid, ename, deptid, hire_date, job, salary)
+
+​
+
+INSERT INTO dept VALUES(100,'영업부',100);
+
+INSERT INTO dept VALUES(200,'관리부',300);
+
+INSERT INTO dept VALUES(300,'구매부',220);
+
+INSERT INTO dept VALUES(400,'생산부',500);
+
+​
+
+INSERT INTO emp VALUES(1001,'홍성길',100,'2001-02-01','특수영업',350);
+
+INSERT INTO emp VALUES(1002,'곽희준',100,'1999-01-01','영업관리',400);
+
+INSERT INTO emp VALUES(1003,'김동준',200,'2000-09-01','품질관리',300);
+
+INSERT INTO emp VALUES(1004,'성재규',300,'1997-02-01','급여',450);
+
+INSERT INTO emp VALUES(1005,'박성범',200,'2000-02-01','수입자재',320);
+
+​
+
+select * from dept;
+
+select * from emp;
+
+​
+
+--(실습) SELECT
+
+--dept(deptid, dname, budget)
+
+--emp(empid, ename, deptid, hire_date, job, salary)
+
+​
+
+--1) 사원에 대한 모든 정보를 보이시오
+
+--2) 곽희준 사원의 담당업무는 무엇인가?
+
+--3) 급여가 300을 넘고 담당업무가 영업관리인 사원의 모든 정보를 보이시오
+
+--4) 모든 사원의 이름과 급여를 보이되 사원 이름을 가나다순으로 보이시오
+
+--5) 부서번호와 그 부서에 속한 사원들의 급여액 합계를 보이시오
+
+--6) 가장 많은 급여를 받는 사원의 급여액과 가장 적은 급여를 받는 사원의 급여액을 보이시오
+
+--7) 가장 많은 급여를 받는 사원의 이름을 보이시오
+
+--8) 사원들의 현재 급여와 급여를 10% 인상했을 때의 예상 급여를 보이시오
+
+--9) 모든 사원들의 이름과 부서이름을 보이시오
+
+--10) 곽희준 사원이 속한 부서의 예산은 얼마인가?
+
+​
+
+--(실습) INSERT
+
+INSERT INTO emp(empid, ename, deptid, hire_date, job, salary)
+
+VALUES(1006,'강윤호',200,'2001-01-10','연말정산',400);
+
+​
+
+INSERT INTO emp(empid, ename, deptid, salary)
+
+VALUES(1007,'남진선','200',500);
+
+​
+
+INSERT INTO emp(empid, ename, deptid, salary)
+
+VALUES(200,'홍성길','200',300);
+
+​
+
+select * from dept;
+
+select * from emp;
+
+​
+
+--(실습) UPDATE
+
+--dept(deptid, dname, budget)
+
+--emp(empid, ename, deptid, hire_date, job, salary)
+
+​
+
+​
+
+​
+
+--홍성길 사원의 부서번호를 400으로, 급여를 500으로 변경하시오
+
+​
+
+--영업부에 속한 사원의 급여를 20% 인상하시오
+
+​
+
+​
+
+​
+
+--(실습) DELETE
+
+--dept(deptid, dname, budget)
+
+--emp(empid, ename, deptid, hire_date, job, salary)
+
+​
+
+​
+
+​
+
+--홍성길 사원의 정보를 사원 정보에서 삭제하시오
+
+​
+
+​
+
+​
+
+--모든 사원의 정보를 사원 정보에서 삭제하시오
+
+/*------------------------------------------------------------------------*/
+
+​
+
+drop table 환자;
+
+drop table 질병;
+
+​
+
+CREATE TABLE 질병 (
+
+     질병코드 char(3) NOT NULL,
+
+     질병명 varchar(20) NULL,
+
+     증상 varchar(20) NULL,
+
+     primary key(질병코드)
+
+);
+
+​
+
+CREATE TABLE 환자 (
+
+     환자번호 char(5) NOT NULL,
+
+     이름 varchar(8) NULL,
+
+     질병코드 char(3) NULL,
+
+     나이 tinyint NULL,
+
+     primary key(환자번호) ,
+
+     foreign key(질병코드) references 질병(질병코드)
+
+);
+
+​
+
+--질병(질병코드, 질병명, 증상)
+
+insert into 질병 values('A01','뇌졸증','어지럼증');
+
+insert into 질병 values('A02','콜레라','설사');
+
+insert into 질병 values('A03','기관지염','발열');
+
+insert into 질병 values('A04','장티프스','발열');
+
+​
+
+--환자(환자번호, 이름, 질병코드, 나이)
+
+insert into 환자(환자번호, 이름, 질병코드, 나이) values('P1001','김철수','A01',30);
+
+insert into 환자(환자번호, 이름, 질병코드, 나이) values('P1002','양길현','A03',29);
+
+insert into 환자(환자번호, 이름, 질병코드, 나이) values('P1003','임영수','A01',50);
+
+insert into 환자(환자번호, 이름, 질병코드, 나이) values('Q1001','박한나','A04',40);
+
+​
+
+select * from 질병
+
+select * from 환자
+
+​
+
+select * from 질병
+
+select * from 환자
+
+​
+
+--1) 증상이 발열인 질병코드와 질병명, 증상을 조회하라
+
+​
+
+--2) 양길현의 이름과 환자번호, 나이를 조회하라
+
+​
+
+--3) 나이가 30 이하인 환자번호와 이름, 나이를 조회하라
+
+​
+
+--4) 환자 김철수의 환자 이름, 질병명, 증상을 조회하라
+
+​
+
+--5) 각 환자의 이름과 질병명을 환자 이름의 오름차순으로 조회하라
+
+​
+
+--6) 질병의 종류중 현재 환자테이블에 있는 환자가 걸리지 않은 질병을 조회하라
+
+select 질병코드, 질병명, 증상
+
+from 질병 D
+
+where NOT EXISTS (select *
+
+from 환자 P
+
+where P.질병코드 = D.질병코드)
+
+​
+
+--answer
+
+--1) 증상이 발열인 질병코드와 질병명, 증상을 조회하라
+
+select 질병코드, 질병명, 증상
+
+from 질병
+
+where 증상='발열'
+
+​
+
+​
+
+--2) 양길현의 이름과 환자번호, 나이를 조회하라
+
+select 이름, 환자번호, 나이
+
+from 환자
+
+where 이름='양길현'
+
+​
+
+--3) 나이가 30 이하인 환자번호와 이름, 나이를 조회하라
+
+select 환자번호, 이름, 나이
+
+from 환자
+
+where 나이 <= 30
+
+​
+
+​
+
+--4) 환자 김철수의 환자 이름, 질병명, 증상을 조회하라
+
+select 이름, 질병명, 증상
+
+from 환자, 질병
+
+where 환자.질병코드 = 질병.질병코드
+
+​
+
+--5) 각 환자의 이름과 질병명을 환자 이름의 오름차순으로 조회하라
+
+select 이름, 질병명
+
+from 환자, 질병
+
+where 환자.질병코드 = 질병.질병코드
+
+order by 이름
+
+​
+
+--6) 질병의 종류 중 현재 환자테이블에 있는 환자가 걸리지 않은 질병을 조회하라
+
+select 질병코드, 질병명, 증상
+
+from 질병 D
+
+where NOT EXISTS (select *
+
+from 환자 P
+
+where P.질병코드 = D.질병코드)

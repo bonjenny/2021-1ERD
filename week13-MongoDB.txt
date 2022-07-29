@@ -1,0 +1,49 @@
+-- MongoDB 실습
+cls: 창 clear
+
+1. mongodb 데몬 실행(cmd1)
+cd c:\MongoDB\bin\
+mongod --dbpath c:\data\db\
+
+
+2. mongodb 실행(cmd2)
+cd c:\MongoDB\bin\
+mongo
+
+
+3. exA1-01 mongo_basic-sample
+show dbs // 데이터베이스 목록 보기
+use mongodb_basic // DB 이름
+
+db.sample.insert({"name":"홍길동"}) // collection 생성
+show dbs
+
+db.sample.save({name:"정주리",age:23});
+
+db.sample.find();
+db.sample.find().pretty();
+
+db.sample.remove({}); // document 2개 모두 제거
+
+use mongodb_basic
+db.dropDatabase();
+show dbs
+
+
+4. exA1-02 mongo_basic-people
+show dbs // 데이터베이스 목록 보기
+use mongodb_basic
+
+db.people.insertOne({ // 하나 입력, 여러개는 insertMany
+   user_id: "gdhong",
+   age: 23,
+   status: "A"
+});
+
+db.people.find();
+db.people.find().pretty();
+
+
+5. mongodb 데몬 정상 종료(cmd1)
+use admin
+db.shutdownServer();

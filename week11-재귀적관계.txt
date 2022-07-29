@@ -1,0 +1,29 @@
+
+/***************** week11-사원-재귀적관계 *****************/
+
+-- 사원(사원번호, 이름, 주민번호, 관리사번)
+
+
+CREATE TABLE 사원
+(
+	사원번호             CHAR(18) NOT NULL ,
+	이름                 CHAR(18) NULL ,
+	주민번호             CHAR(18) NULL ,
+	관리사번             CHAR(18) NULL ,
+        CONSTRAINT PK_사원_사원번호 PRIMARY KEY(사원번호) ,
+        FOREIGN KEY(관리사번) REFERENCES 사원(사원번호)
+);
+
+INSERT into 사원 values(1,'박찬호','720201-1034343',NULL);
+INSERT into 사원 values(2,'선동열','680709-1078656',1);
+INSERT into 사원 values(3,'임꺽정','700101-1027362',2);
+INSERT into 사원 values(4,'차범근','600809-1987766',3);
+INSERT into 사원 values(5,'홍길동','651214-1078767',4);
+
+SELECT * from 사원;
+
+SELECT   E.이름 사원명, M.이름 관리자명
+FROM     사원 E, 사원 M
+WHERE    E.관리사번 = M.사원번호;
+
+/**********************************************************/
